@@ -1,0 +1,80 @@
+% Basic settings
+\usetheme{Singapore}                % Madrid, Singapore, Boadilla
+\usefonttheme{professionalfonts}    % use lmodern mathfont; "serif"
+\setbeamertemplate{navigation symbols}{}
+\renewcommand{\insertnavigation}[1]{}
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{footline}{fg=Blue}
+\setbeamerfont{footline}{size=\footnotesize}
+
+% Citations (not /biblatex/, beamer's default)
+% use "biblatex" to show (author, year) and bibliography at the last page
+\usepackage[style=apa,language=english]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+\renewcommand*{\cite}{\parencite}
+\renewcommand*{\citesetup}{\color{gray}}
+\renewcommand*{\bibfont}{\scriptsize}
+% set bibliography styles
+\setlength\bibitemsep{1.2\itemsep}
+\setbeamertemplate{bibliography item}{}  % remove the image before entries
+\setbeamercolor*{bibliography entry author}{parent=normal text}
+\setbeamercolor*{bibliography entry title}{parent=palette primary}
+\setbeamercolor*{bibliography entry journal}{parent=normal text}
+\setbeamercolor*{bibliography entry note}{parent=normal text}
+% add bib library files
+\addbibresource{./ref/library.bib}
+
+% Fonts
+% \usepackage{lmodern,charter}
+% \usefonttheme{serif}
+% \setbeamerfont{title}{family=\sffamily, series=\bfseries}
+% \setbeamerfont{frametitle}{family=\sffamily\sf}
+% \setbeamerfont{framesubtitle}{family=\sffamily\sf}
+
+% Packages
+\usepackage{latexsym, amsmath, amssymb, amsfonts,
+            arydshln, mathrsfs, mathtools, upgreek}
+\usepackage{graphicx,subcaption,tikz}
+  \captionsetup[figure]{textfont=scriptsize,labelfont=scriptsize}
+  \setbeamerfont{caption}{size=\scriptsize}
+\usepackage{algorithm,algpseudocode}
+\usepackage{appendixnumberbeamer}
+
+% Title Page
+\newcommand{\createLCSBTitlePage}{
+  % Coordinates for logo in titlepage
+  \newlength{\logoX}
+  \newlength{\logoY}
+  \newcommand{\coordinateWidth}{0.7cm}
+  \newcommand{\coordinateHeight}{1.1cm}
+  % Creates title page of slide show using above information
+  \setbeamertemplate{footline}{}  % remove page number
+  \begin{frame}
+    \begin{tikzpicture}[remember picture,overlay]
+      \setlength{\logoX}{\coordinateWidth}
+      \setlength{\logoY}{\coordinateHeight}
+      \node[xshift=.7cm,yshift=0.75cm] at (current page.south west)
+      {\includegraphics[height=1cm]{figures/lcsb-logo}};
+      \setlength{\logoX}{-\coordinateWidth-1cm}
+      \setlength{\logoY}{\coordinateHeight-0.1cm}
+      \node[xshift=-1.7cm,yshift=0.65cm] at (current page.south east)
+      {\includegraphics[height=.7cm]{figures/unilu-logo}};
+      \setlength{\logoX}{\coordinateWidth+6.2cm}
+      \setlength{\logoY}{\coordinateHeight}
+      \node[xshift=6.9cm,yshift=0.75cm] at (current page.south west)
+      {\includegraphics[scale=1]{figures/lcsb-ppt-template-line}};
+    \end{tikzpicture}
+
+    \titlepage
+  \end{frame}
+  \setbeamertemplate{footline}[frame number]   % reset page number
+  \setcounter{framenumber}{0}
+}
+
+% Table of Contents before each section
+\AtBeginSection[]{
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+}

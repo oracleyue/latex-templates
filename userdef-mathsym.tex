@@ -1,0 +1,48 @@
+% =============================================================
+% LaTeX macros for mathematical symbols
+% =============================================================
+% -- [copy it later in the emacs snippet: "mathsymb"] --
+
+
+% math symbols
+\newcommand{\mnorm}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}} % matrix norm
+\newcommand{\bm}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\pperp}{\!\perp\!\!\!\perp\!}
+\newcommand{\given}{\!\mid\!}
+\def\dasharrow{\ensuremath{\operatorname{-}\operatorname{-}}}
+\def\linearrow{\ensuremath{\operatorname{---}}}
+\newcommand{\ABCD}{\left[\begin{array}{c|c} A & B \\ \hline D & D \end{array} \right]}
+
+% math operators
+\newcommand{\diag}{\operatorname{{diag}}}
+\newcommand{\blkdiag}{\operatorname{{blkdiag}}}
+\newcommand{\trace}{\operatorname{{tr}}}
+\newcommand{\rank}{\operatorname{{rank}}}
+\newcommand{\im}{\operatorname{{Im}}}
+\newcommand{\re}{\operatorname{{Re}}}
+\newcommand{\kvec}{\operatorname{{vec}}}
+\newcommand{\ikvec}{\operatorname{{ivec}}}
+\newcommand{\ivec}{\operatorname{{ivec}}}
+\newcommand{\sinch}{\operatorname{{sinch}}}
+\newcommand{\Log}{\operatorname{{Log}}}
+\newcommand{\eig}{\operatorname{{eig}}}
+\newcommand{\sgn}{\operatorname{{sgn}}}
+\newcommand{\card}{\operatorname{{card}}}
+\newcommand{\dom}{\operatorname{\mathbf{dom}}}
+\newcommand{\prox}{\operatorname{\mathbf{prox}}}
+\newcommand{\cov}{\operatorname{\mathbf{cov}}}
+\newcommand{\var}{\operatorname{\mathbf{var}}}
+\newcommand{\Tr}{\operatorname{{Tr}}}
+
+\newcommand{\minimize}[1]{\underset{#1}{\operatorname{minimize}\;}}  % or using \,
+\newcommand{\maximize}[1]{\underset{#1}{\operatorname{maximize}\;}}  % or using \,
+\newcommand{\st}{\operatorname{subject\ to}}
+\newcommand{\argmin}[1]{\underset{#1}{\operatorname{arg\,\!min}\;}}
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{arg\,\!max}\;}}
+\newcommand{\argmini}[1]{\operatorname{arg}\,\!\underset{#1}{\operatorname{min}}\;}
+\newcommand{\argmaxi}[1]{\operatorname{arg}\,\!\underset{#1}{\operatorname{max}}\;}
+
+% macros
+\newcommand{\yue}[1]{\textcolor{red}{[Zuogong: #1]}}
+% \newcommand{\yue}[1]{\todo[inline]{Zuogong: #1}}  % require "todonotes" pkg

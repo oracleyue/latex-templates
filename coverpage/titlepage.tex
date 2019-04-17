@@ -1,0 +1,55 @@
+%----------------------------------------------------------------------------------------
+%   HOW TO USE
+%----------------------------------------------------------------------------------------
+% To use this title page, 
+% 1. \usepackage{geometry} in your latex source file;
+% 2. \input{./titlepage.tex} within the environment of "document" before \maketitle, if you have.
+% 
+% To generate an independent page, use "cover-page_II.tex"
+
+
+%----------------------------------------------------------------------------------------
+%	INFO
+%----------------------------------------------------------------------------------------
+\newcommand{\covertitle}{Dynamic Causal Network Reconstruction}
+\newcommand{\coversubtitle}{Part I: Definitions}
+\newcommand{\coverauthor}{Zuogong Yue}
+\newcommand{\coverdate}{LCSB, 2015}
+\newcommand{\info}{Technical report to AFR}
+\newcommand{\supervisor}{Prof. Dr. Jorge Gon\c{c}alves\hspace*{.5em}}
+\newcommand{\cetmembers}{Dr. Ronan Mt Fleming (LCSB)\\ \hspace{5.1em} Dr. Ye Yuan (Cambridge U.)}
+\newcommand{\university}{University of Luxembourg}
+\newcommand{\institute}{Luxembourg Centre for Systems Biomedicine\\  
+  Facult\'{e} des Sciences, de la Technologie et de la Communication}
+\newcommand{\logo}{figures/unilu-logo}
+
+
+% %----------------------------------------------------------------------------------------
+% %	BLANK DOCUMENT
+% %----------------------------------------------------------------------------------------
+\newgeometry{margin=1.5in}
+
+\pagestyle{empty} % Removes page numbers
+\makeatletter     % To use default variables, like \author{...} by \@author
+\begin{titlepage}
+  \hbox{ % Horizontal box
+    \hspace*{0.2\textwidth} % Whitespace to the left of the title page
+    \rule{1pt}{\textheight} % Vertical line
+    \hspace*{0.05\textwidth} % Whitespace between the vertical line and title page text
+    \parbox[b]{0.75\textwidth}{ % Paragraph box which restricts text to less than the width of the page
+
+      % {\noindent\Huge\bfseries A Collection of \\[0.5\baselineskip] \LaTeX ~Templates}\\[2\baselineskip] % Title
+      {\noindent \info} \\[1.5\baselineskip]
+      {\noindent\Huge\bfseries \covertitle}\\[2\baselineskip]
+      {\large \textit{\coversubtitle}}\\[4\baselineskip] % Tagline or further description
+      {\Large \textsc{\coverauthor}} % Author name
+
+      \vspace{0.45\textheight} % Whitespace between the title block and the publisher
+      {\noindent \university \\[.5\baselineskip]
+        {\includegraphics[width=2cm,keepaspectratio]{\logo}}
+      }\\[\baselineskip] % Publisher and logo
+    }}
+\end{titlepage}
+\makeatother    % To use default variables, like \author{...} by \@author
+
+\restoregeometry

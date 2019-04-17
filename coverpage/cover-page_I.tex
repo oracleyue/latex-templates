@@ -1,0 +1,66 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.5in]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage{helvet}  % using Helvet as sans serif font
+\usepackage{times}   % using Nimbus Serif, instead of Computer Modern Serif by default
+\usepackage[scaled=0.8]{DejaVuSansMono}
+\usepackage{graphicx}
+
+% Command definitions
+\newcommand{\HRule}{\par\rule{\linewidth}{0.2mm}\par}
+
+% Information about the document (used for building the titlepage)
+\title{Dynamic Causal Network Reconstruction \\ Part I: Definitions}
+\author{Zuogong Yue}
+\date{LCSB, 2015}
+\newcommand{\info}{Technical report to AFR}
+\newcommand{\supervisor}{Prof. Dr. Jorge Gon\c{c}alves\hspace*{.5em}}
+\newcommand{\cetmembers}{Dr. Ronan Mt Fleming (LCSB)\\ \hspace{5.1em} Dr. Ye Yuan (Cambridge U.)}
+\newcommand{\university}{University of Luxembourg}
+\newcommand{\institute}{Luxembourg Centre for Systems Biomedicine\\  
+  Facult\'{e} des Sciences, de la Technologie et de la Communication}
+\newcommand{\logo}{figures/unilu-logo}
+
+
+\begin{document}
+
+\makeatletter
+\begin{titlepage}
+  \cleardoublepage
+  \thispagestyle{empty}
+
+  \vspace{2em}
+  \begin{center}%
+    {\Large \bfseries \info \par}
+    \vspace{5em}
+    {\HRule \vspace{2em} \LARGE \bfseries \sffamily \@title \vspace*{1em}\HRule\vspace*{2em}}%
+    \vspace{1.5em}%
+    {\large \lineskip .5em%
+      \begin{tabular}[t]{c}
+        \@author
+      \end{tabular}\par}%
+    \vspace{.5em}%
+    {\large \@date \par}
+    \vspace{1em}%
+    \vfill
+    {\normalsize \it \institute \par \vspace{0mm}}%
+    {\normalsize \it \university \par}%
+    \vspace{1em}%
+    {\includegraphics[width=2.5cm,keepaspectratio]{\logo} \par}%
+    \vspace{20mm}%
+    {\normalsize Supervisor: \supervisor \par}%
+    {\normalsize CET Members: \cetmembers \par}%
+    % \vspace{2mm}%
+  \end{center}%
+  \vspace{2em}%
+\end{titlepage}
+\makeatother
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

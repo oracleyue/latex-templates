@@ -1,0 +1,65 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{book}
+
+\usepackage[a4paper,margin=1.5in]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage{helvet}  % using Helvet as sans serif font
+\usepackage{times}   % using Nimbus Serif, instead of Computer Modern Serif by default
+\usepackage[scaled=0.8]{DejaVuSansMono}
+\usepackage{graphicx}
+
+%----------------------------------------------------------------------------------------
+%	INFO
+%----------------------------------------------------------------------------------------
+\newcommand{\covertitle}{Dynamic Causal Network Reconstruction}
+\newcommand{\coversubtitle}{Part I: Definitions}
+\author{Zuogong Yue}
+\date{LCSB, 2015}
+\newcommand{\info}{Technical report to AFR}
+\newcommand{\supervisor}{Prof. Dr. Jorge Gon\c{c}alves\hspace*{.5em}}
+\newcommand{\cetmembers}{Dr. Ronan Mt Fleming (LCSB)\\ \hspace{5.1em} Dr. Ye Yuan (Cambridge U.)}
+\newcommand{\university}{University of Luxembourg}
+\newcommand{\institute}{Luxembourg Centre for Systems Biomedicine\\  
+  Facult\'{e} des Sciences, de la Technologie et de la Communication}
+\newcommand{\logo}{figures/unilu-logo}
+
+
+% %----------------------------------------------------------------------------------------
+% %	BLANK DOCUMENT
+% %----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\pagestyle{empty} % Removes page numbers
+
+\makeatletter
+\begin{titlepage}
+  \hbox{ % Horizontal box
+    \hspace*{0.2\textwidth} % Whitespace to the left of the title page
+    \rule{1pt}{\textheight} % Vertical line
+    \hspace*{0.05\textwidth} % Whitespace between the vertical line and title page text
+    \parbox[b]{0.75\textwidth}{ % Paragraph box which restricts text to less than the width of the page
+
+      % {\noindent\Huge\bfseries A Collection of \\[0.5\baselineskip] \LaTeX ~Templates}\\[2\baselineskip] % Title
+      {\noindent \info} \\[1.5\baselineskip]
+      {\noindent\Huge\bfseries \covertitle}\\[2\baselineskip]
+      {\large \textit{\coversubtitle}}\\[4\baselineskip] % Tagline or further description
+      {\Large \textsc{\@author}} % Author name
+
+      \vspace{0.5\textheight} % Whitespace between the title block and the publisher
+      {\noindent \university \\[.5\baselineskip]
+        {\includegraphics[width=2cm,keepaspectratio]{\logo}}
+      }\\[\baselineskip] % Publisher and logo
+    }}
+\end{titlepage}
+\makeatother
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

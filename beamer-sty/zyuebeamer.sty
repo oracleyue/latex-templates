@@ -1,0 +1,186 @@
+% ================================================================
+% Beamer Configurations: default for zyue
+% ================================================================
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{zyuebeamer}[2017/12/01 Custom Package]
+
+% Parsing Options
+\newif\if@useBibEntry
+\newif\if@useBibLaTeX
+\DeclareOption{biblatex}{
+    \@useBibLaTeXtrue
+    \@useBibEntryfalse
+}
+\DeclareOption{bibentry}{
+    \@useBibEntrytrue
+    \@useBibLaTeXfalse
+}
+\ExecuteOptions{biblatex}
+\newif\if@usetxmath\@usetxmathfalse
+\DeclareOption{txmath}{
+  \@usetxmathtrue
+}
+\newif\if@usesans\@usesansfalse
+\DeclareOption{sans}{
+  \@usesanstrue
+}
+\newif\if@usecharter\@usecharterfalse
+\DeclareOption{charter}{
+  \@usechartertrue
+}
+\newif\if@useBGcolor\@useBGcolorfalse
+\DeclareOption{bg}{
+  \@useBGcolortrue
+}
+\newif\if@useToC\@useToCtrue
+\DeclareOption{notoc}{
+  \@useToCfalse
+}
+\ProcessOptions
+
+% Beamer Settings
+% set fonts
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\if@usesans
+  \usefonttheme{professionalfonts}
+\else
+  \usefonttheme{serif}
+  % \RequirePackage[condensed]{roboto}
+  \RequirePackage{roboto}
+  \if@usecharter
+    \RequirePackage{charter}
+  \fi
+\fi
+\if@usetxmath
+  \usefonttheme{professionalfonts}
+  \RequirePackage{newtxmath}
+\fi
+\if@usecharter
+  \setbeamerfont{title}{series=\bfseries}
+\else
+  \setbeamerfont{title}{family=\sffamily, series=\mdseries}
+\fi
+\setbeamerfont{frametitle}{family=\robotocondensed, series=\mdseries}
+\setbeamerfont{framesubtitle}{family=\robotocondensed,series=\mdseries}
+% color definitions (/pencillight/ for iTerm2)
+\definecolor{mBlack}{HTML}{2c2c2c}
+\definecolor{mLightBlack}{HTML}{545454}
+\definecolor{mGray}{HTML}{808080}
+\definecolor{mBlue}{HTML}{06a1cd}
+\definecolor{mGreen}{HTML}{12b28b}
+\definecolor{mViolet}{HTML}{65528a}
+\definecolor{mCyan}{HTML}{2cb3c5}
+\definecolor{mRed}{HTML}{ce2e84}
+\definecolor{mWhite}{HTML}{f4f4f4}
+% choose colors
+\colorlet{mAlert}{mRed}
+\colorlet{mHighlight}{mBlue}
+\colorlet{mColor}{mBlue}
+% set beamer elements
+\usecolortheme[named=mColor]{structure}
+\setbeamercolor{normal text}{fg=mBlack}  % bug: comment it, if images show black bg
+\setbeamercolor{alerted text}{fg=mAlert} % \alert{..}
+\setbeamerfont*{block title}{family=\sffamily, series=\mdseries}
+\setbeamerfont*{block body example}{size=\small}
+\setbeamercolor*{block title}{fg=mBlack, bg= mColor!80}
+\setbeamercolor*{block title alerted}{fg=mBlack, bg= mAlert!80}
+\setbeamercolor*{block title example}{fg=mBlack, bg= mGray!80}
+\if@useBGcolor
+  \setbeamercolor{background canvas}{bg=mWhite}   % block: bg=mGray!15
+  \setbeamercolor*{block body}{fg=mBlack, bg= mGray!15}
+  \setbeamercolor*{block body alerted}{fg=mBlack, bg= mGray!15}
+  \setbeamercolor*{block body example}{fg=mBlack, bg= mGray!15}
+\else
+  \setbeamercolor*{block body}{fg=mBlack, bg= mGray!10}
+  \setbeamercolor*{block body alerted}{fg=mBlack, bg= mGray!10}
+  \setbeamercolor*{block body example}{fg=mBlack, bg= mGray!10}
+\fi
+% extension of block with given width
+% usage: \begin{varblock}[4cm]{} ...
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+  \setlength{\textwidth}{#1}
+  \begin{actionenv}#3%
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+% or, use the snippet "varblock" by minipage.
+
+% set layouts
+\RequirePackage{dashrule}
+\setbeamertemplate{frametitle}{%\centering
+  \vspace*{10pt}%
+  \usebeamerfont{frametitle}\insertframetitle\\[-5pt]   % -8pt
+  {\color{mGray}\hdashrule{\textwidth}{1pt}{1pt}}}
+% \setbeamersize{text margin left=35pt,text margin right=35pt}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{footline}{fg=mBlack}
+\setbeamerfont{footline}{size=\footnotesize}
+
+% Citations
+\if@useBibLaTeX
+  % use "biblatex" to show (author, year) and bibliography at the last page
+  \usepackage[style=apa,language=english]{biblatex}
+  \DeclareLanguageMapping{english}{english-apa}
+  \renewcommand*{\cite}{\parencite}
+  \renewcommand*{\citesetup}{\color{mGray}}
+  \renewcommand*{\bibfont}{\footnotesize}
+  % \addbibresource{./ref/library.bib}   % add in .tex to include bib files
+  % \printbibliography                   % add in .tex to print bibliography
+
+  % bibliography styles
+  \setlength\bibitemsep{1.2\itemsep}
+  \setbeamertemplate{bibliography item}{}  % remove the image before entries
+  \setbeamercolor*{bibliography entry author}{parent=normal text}
+  \setbeamercolor*{bibliography entry title}{parent=palette primary}
+  \setbeamercolor*{bibliography entry journal}{parent=normal text}
+  \setbeamercolor*{bibliography entry note}{parent=normal text}
+\fi
+\if@useBibEntry
+  % use "bibentry" to cite in footnotes
+  \RequirePackage{bibentry}       % use \footnote{\bibentry{}}
+  \newcommand{\footcite}[1]{\footnote{\tiny\bibentry{#1}}}
+  \newcommand{\textcite}[1]{\footnotetext{\tiny\bibentry{#1}}} % put \footnotemark first
+  % removing line breaks between title, journal, etc.
+  \setbeamertemplate{bibliography entry title}{}
+  \setbeamertemplate{bibliography entry location}{}
+  \setbeamertemplate{bibliography entry note}{}
+\fi
+
+% Packages
+\RequirePackage{graphicx,subcaption,tikz}
+  \captionsetup[figure]{textfont=scriptsize,labelfont=scriptsize}
+  \captionsetup[figure]{labelformat=empty}
+  \setbeamerfont{caption}{size=\scriptsize}
+\RequirePackage{appendixnumberbeamer}
+
+% Table of Contents (adding before each section)
+\if@useToC
+\AtBeginSection[]{
+  \begin{frame}
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}}
+\fi
+
+% Text Alignment
+\RequirePackage{setspace}
+\linespread{1.2}
+
+% Customized Macros
+\newcommand{\ul}[1]{{\underline{#1}}}   % \ul{..}
+\newcommand{\hl}[1]{{\color{mHighlight} {#1}}}   % \hl{..}
+\newenvironment{notes}{\footnotesize\color{mLightBlack}\vspace*{30pt}%
+  {\color{mGray}\hdashrule{.18\textwidth}{1pt}{1pt}}\newline}{}
+
+
+
+\endinput
+% ===================================
+% Style /zyuebeamer/ ends here.

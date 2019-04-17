@@ -1,0 +1,289 @@
+% Beamer color theme using the Atom-One-Dark palette,
+% https://github.com/jonathanchu/atom-one-dark-theme.
+%
+% Copyright 2012 oracleyue
+
+% To show the colors defined in this sty file, add the following in your latex
+% file:
+%      \textcolor{atomBase03}{atomBase03}
+%      \textcolor{atomBase02}{atomBase02}
+%      \textcolor{atomBase01}{atomBase01}
+%      \textcolor{atomBase00}{atomBase00}
+%      \textcolor{atomBase0}{atomBase0}
+%      \textcolor{atomBase1}{atomBase1}
+%      \textcolor{atomBase2}{atomBase2}
+%      \textcolor{atomBase3}{atomBase3}
+%      \textcolor{atomYellow}{atomYellow}
+%      \textcolor{atomOrange}{atomOrange}
+%      \textcolor{atomRed}{atomRed}
+%      \textcolor{atomMagenta}{atomMagenta}
+%      \textcolor{atomViolet}{atomViolet}
+%      \textcolor{atomBlue}{atomBlue}
+%      \textcolor{atomCyan}{atomCyan}
+%      \textcolor{atomGreen}{atomGreen}
+% and compile them.
+
+\ProvidesPackage{zyuebeamerdark}[2013/10/11 1.0.1 AtomOneDark color theme for beamer]
+\RequirePackage{etoolbox}
+\RequirePackage{kvoptions}
+
+
+% ================================================================
+% Parsing Options
+% ================================================================
+
+\SetupKeyvalOptions{
+  family=atom,
+  prefix=atom@,
+}
+\DeclareStringOption[blue]{accent}[blue]
+
+\newif\ifatom@useBibEntry\atom@useBibEntryfalse
+\newif\ifatom@useBibLaTeX\atom@useBibLaTeXtrue
+\DeclareVoidOption{bibentry}{
+    \atom@useBibLaTeXfalse
+    \atom@useBibEntrytrue
+}
+\newif\ifatom@usetxmath\atom@usetxmathfalse
+\DeclareVoidOption{txmath}{
+  \atom@usetxmathtrue
+}
+\newif\ifatom@usesans\atom@usesansfalse
+\DeclareVoidOption{sans}{
+  \atom@usesanstrue
+}
+
+\ProcessKeyvalOptions*
+
+
+% ================================================================
+% Theme/Color Settings
+% ================================================================
+
+% AtomOneDark palette
+\definecolor{atomBase03}{HTML}{282C34}
+\definecolor{atomBase02}{HTML}{2F343D}
+\definecolor{atomBase01}{HTML}{121417}
+\definecolor{atomBase00}{HTML}{666D7A}
+\definecolor{atomBase0}{HTML}{ABB2BF}
+\definecolor{atomBase1}{HTML}{ABB2BF}
+\definecolor{atomBase2}{HTML}{828997}
+\definecolor{atomBase3}{HTML}{5C6370}
+\definecolor{atomYellow}{HTML}{E5C07B}
+\definecolor{atomOrange}{HTML}{D19A66}
+\definecolor{atomRed}{HTML}{BE5046}
+\definecolor{atomMagenta}{HTML}{E06C75}
+\definecolor{atomViolet}{HTML}{C678DD}
+\definecolor{atomBlue}{HTML}{61AFEF}
+\definecolor{atomCyan}{HTML}{56B6C2}
+\definecolor{atomGreen}{HTML}{98C379}
+
+\definecolor{atomDeepBlue}{HTML}{6494ED}
+\definecolor{atomLightBlack}{HTML}{21252B}
+
+% Redefine default colors from /xcolor/ package
+% \colorlet{white}{atomBase0}
+% \colorlet{gray}{atomBase2}
+% \colorlet{black}{atomBase02}
+% \colorlet{yellow}{atomYellow}
+% \colorlet{orange}{atomOrange}
+% \colorlet{red}{atomRed}
+% \colorlet{magenta}{atomMagenta}
+% \colorlet{violet}{atomViolet}
+% \colorlet{blue}{atomBlue}
+% \colorlet{cyan}{atomCyan}
+% \colorlet{green}{atomGreen}
+
+% Set Accent color
+\ifdefstring{\atom@accent}{yellow}{
+  \colorlet{atomAccent}{atomYellow}
+}{}
+\ifdefstring{\atom@accent}{orange}{
+  \colorlet{atomAccent}{atomOrange}
+}{}
+\ifdefstring{\atom@accent}{red}{
+  \colorlet{atomAccent}{atomRed}
+}{}
+\ifdefstring{\atom@accent}{magenta}{
+  \colorlet{atomAccent}{atomMagenta}
+}{}
+\ifdefstring{\atom@accent}{violet}{
+  \colorlet{atomAccent}{atomViolet}
+}{}
+\ifdefstring{\atom@accent}{blue}{
+  \colorlet{atomAccent}{atomBlue}
+}{}
+\ifdefstring{\atom@accent}{cyan}{
+  \colorlet{atomAccent}{atomCyan}
+}{}
+\ifdefstring{\atom@accent}{green}{
+  \colorlet{atomAccent}{atomGreen}
+}{}
+\colorlet{mAlert}{atomMagenta}
+
+% Set Base colors for dark theme
+\colorlet{atomRebase03}{atomBase03}
+\colorlet{atomRebase02}{atomBase02}
+\colorlet{atomRebase01}{atomBase01}
+\colorlet{atomRebase00}{atomBase00}
+\colorlet{atomRebase0}{atomBase0}
+\colorlet{atomRebase1}{atomBase1}
+\colorlet{atomRebase2}{atomBase2}
+\colorlet{atomRebase3}{atomBase3}
+
+\mode<presentation>
+
+\setbeamercolor{normal text}{fg=atomRebase0, bg=atomRebase03}
+% \setbeamercolor{alerted text}{fg=atomAccent}
+\setbeamercolor{alerted text}{fg=atomRed}
+\setbeamercolor{example text}{fg=atomRebase1, bg=atomRebase02}
+
+% Header and footer from CSS
+\setbeamercolor{footline}{bg=atomRebase02,fg=atomRebase2}
+\setbeamercolor{headline}{bg=atomRebase01,fg=atomRebase1}
+
+% Titles
+\setbeamercolor*{titlelike}{fg=atomAccent}
+\setbeamercolor*{frametitle}{fg=atomAccent}
+\setbeamercolor*{title}{fg=atomAccent}
+
+% Structure elements use css style for header
+\setbeamercolor*{structure}{bg=atomRebase01, fg=atomRebase1}
+
+% Do not mess with subtle colors in palette. I don't like it.
+\setbeamercolor*{palette primary}{bg=atomRebase01, fg=atomRebase1}
+\setbeamercolor*{palette secondary}{bg=atomRebase01, fg=atomRebase1}
+\setbeamercolor*{palette tertiary}{bg=atomRebase01, fg=atomRebase1}
+\setbeamercolor*{palette quaternary}{bg=atomRebase01, fg=atomRebase1}
+
+% Make Blocks slightly lighter/darker
+\setbeamercolor{block title}{fg=atomAccent, bg=atomRebase02}
+\setbeamercolor{block title alerted}{fg=atomMagenta, bg=atomRebase02}
+\setbeamercolor{block title example}{fg=atomGreen, bg=atomRebase02}
+
+\setbeamercolor{block body}{parent=normal text, bg=atomRebase02}
+\setbeamercolor{block body alerted}{parent=normal text, bg=atomRebase02}
+\setbeamercolor{block body example}{parent=normal text, bg=atomRebase02}
+
+% same as footline
+% Set Sidebar and footline to use the css style for footer
+\setbeamercolor*{sidebar}{parent=headline}
+\setbeamercolor*{palette sidebar primary}{fg=atomRebase01, fg=atomRebase1}
+\setbeamercolor*{palette sidebar secondary}{fg=atomRebase01, fg=atomRebase1}
+\setbeamercolor*{palette sidebar tertiary}{fg=atomRebase01, fg=atomRebase1}
+\setbeamercolor*{palette sidebar quaternary}{fg=atomRebase01, fg=atomRebase1}
+
+% border-color for headings
+\setbeamercolor{separation line}{fg=atomRebase0}
+\setbeamercolor{fine separation line}{fg=atomRebase0}
+
+\setbeamercolor*{section in sidebar shaded}{parent=palette sidebar primary}
+% a.hover.navlink in CSS
+\setbeamercolor*{section in sidebar}{parent=palette sidebar primary, fg=atomRebase02}
+\setbeamercolor*{subsection in sidebar}{parent=section in sidebar}
+\setbeamercolor*{subsection in sidebar shaded}{parent=section in sidebar shaded}
+
+\mode
+<all>
+
+
+% ================================================================
+% Style/Layout and Package Settings
+% ================================================================
+\beamertemplatetransparentcovered
+
+% Beamer Settings
+% set fonts
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\ifatom@usesans
+  \usefonttheme{professionalfonts}
+\else
+  \RequirePackage[condensed]{roboto}
+  \RequirePackage{charter}
+  \usefonttheme{serif}
+\fi
+\ifatom@usetxmath
+  \usefonttheme{professionalfonts}
+  \RequirePackage{newtxmath}
+\fi
+\setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{frametitle}{family=\sffamily, series=\mdseries}
+\setbeamerfont{framesubtitle}{family=\sffamily,series=\mdseries}
+% choose colors
+\colorlet{mGray}{atomBase2}
+\colorlet{mBlack}{atomRebase0}
+\colorlet{mHighlight}{atomAccent}
+% set beamer elements
+\setbeamerfont*{block title}{family=\sffamily, series=\mdseries}
+\setbeamerfont*{block body example}{size=\small}
+% set layouts
+\RequirePackage{dashrule}
+\setbeamertemplate{frametitle}{%\centering
+  \vspace*{10pt}%
+  \usebeamerfont{frametitle}\insertframetitle\\[-5pt]   % -8pt
+  {\color{mGray}\hdashrule{\textwidth}{1pt}{1pt}}}
+% \setbeamersize{text margin left=35pt,text margin right=35pt}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{footline}{fg=mBlack}
+\setbeamerfont{footline}{size=\footnotesize}
+
+% Citations
+\ifatom@useBibLaTeX
+  % use "biblatex" to show (author, year) and bibliography at the last page
+  \usepackage[style=apa,language=english]{biblatex}
+  \DeclareLanguageMapping{english}{english-apa}
+  \renewcommand*{\cite}{\parencite}
+  \renewcommand*{\citesetup}{\small \color{mGray}}
+  \renewcommand*{\bibfont}{\scriptsize}
+  % \addbibresource{./ref/library.bib}   % add in .tex to include bib files
+  % \printbibliography                   % add in .tex to print bibliography
+
+  % bibliography styles
+  \setlength\bibitemsep{1.2\itemsep}
+  \setbeamertemplate{bibliography item}{}  % remove the image before entries
+  \setbeamercolor*{bibliography entry author}{parent=normal text}
+  \setbeamercolor*{bibliography entry title}{parent=palette primary}
+  \setbeamercolor*{bibliography entry journal}{parent=normal text}
+  \setbeamercolor*{bibliography entry note}{parent=normal text}
+\fi
+\ifatom@useBibEntry
+  % use "bibentry" to cite in footnotes
+  \RequirePackage{bibentry}       % use \footnote{\bibentry{}}
+  \newcommand{\footcite}[1]{\footnote{\tiny\bibentry{#1}}}
+  \newcommand{\textcite}[1]{\footnotetext{\tiny\bibentry{#1}}} % put \footnotemark first
+  % removing line breaks between title, journal, etc.
+  \setbeamertemplate{bibliography entry title}{}
+  \setbeamertemplate{bibliography entry location}{}
+  \setbeamertemplate{bibliography entry note}{}
+\fi
+
+% Packages
+\RequirePackage{graphicx,subcaption,tikz}
+  \captionsetup[figure]{textfont=scriptsize,labelfont=scriptsize}
+  \setbeamerfont{caption}{size=\scriptsize}
+\RequirePackage{appendixnumberbeamer}
+
+% Table of Contents (adding before each section)
+\AtBeginSection[]{
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}}
+
+% Text Alignment
+\RequirePackage{setspace}
+\linespread{1.2}
+
+% Customized Macros
+\newcommand{\hl}[1]{{\color{mHighlight}\emph{#1}}}   % \hl{..}
+\newenvironment{notes}{\footnotesize\color{mGray}\vspace*{30pt}%
+  {\color{mGray}\hdashrule{.18\textwidth}{1pt}{1pt}}\newline}{}
+
+
+
+\endinput
+% ===================================
+% Style /zyuebeamerdark/ ends here.

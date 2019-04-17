@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: Formula Preview
+# key: formula
+# group: templates
+# expand-env: ((yas-indent-line 'fixed))
+# --
+\documentclass[class=scrreprt]{standalone}
+\usepackage{varwidth}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% \KOMAoptions{fontsize=24pt}
+% \usepackage{times,newtxmath}
+\usepackage{lmodern}
+
+\usepackage{latexsym, amsmath, amssymb, amsfonts, mathrsfs, arydshln, mathtools}
+\usepackage{algorithm, algpseudocode}
+\usepackage{graphics, setspace}
+
+\begin{document}
+\begin{varwidth}{10in}
+     \begin{equation*}
+       \begin{aligned}
+         % insert equation here:
+         % Equation #1
+         $0
+       \end{aligned}
+     \end{equation*}
+\end{varwidth}
+\end{document}

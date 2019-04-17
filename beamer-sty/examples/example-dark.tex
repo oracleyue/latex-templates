@@ -1,0 +1,144 @@
+\documentclass[aspectratio=169]{beamer}
+% options: presentation,notes,handout; aspectratio=169,1610,149,54,43,32
+\usepackage[accent=blue,sans]{styles/zyuebeamerdark}
+
+% Packages
+\usepackage{latexsym, amsmath, amssymb, amsfonts,
+            arydshln, mathrsfs, mathtools, upgreek}
+\usepackage{algorithm,algpseudocode}
+
+% Macros
+% \input{userdef-mathsym}
+
+% Title Page
+\title[]{Example on showing colors}
+\subtitle{}
+\author{\small Zuogong Yue$^1$\\[1ex] J. Thunberg$^1$, L. Ljung$^2$, J. Goncalves$^1$}
+\institute[]{
+    \begin{tabular}{ll}
+       $^1$ University of Luxembourg, Luxembourg\\
+       $^2$ Link\"{o}ping University, Sweden
+    \end{tabular}}
+\date{\footnotesize 14 July 2016 $\cdot$ MTNS 2016 $\cdot$ Minneapolis, MN}
+
+
+\begin{document}
+
+% ---- Title Page ----
+\setbeamertemplate{footline}{}              % remove page number
+\begin{frame}
+  \titlepage
+  \bibliographystyle{apalike}               % abbrv;apalike
+  \nobibliography{./ref/library}            % enable /bibentry/: citations as footnotes
+\end{frame}
+\setbeamertemplate{footline}[frame number]  % reset page number
+\setcounter{framenumber}{0}
+
+
+% ---- Main Part ----
+
+\begin{frame}
+  \frametitle{Introduction}
+
+  Here is a citation\footcite{Goncalves2009}. And a math formula
+  \begin{equation*}
+    V(\mathcal{G}) \coloneqq V(\mathcal{G}_x), \;\forall x \in M,
+    \quad
+    E(\mathcal{G}) \coloneqq \underset{
+      \begin{subarray}{c}
+        x \in M
+      \end{subarray}
+    }{\bigcup}E(\mathcal{G}_x).
+  \end{equation*}
+\end{frame}
+
+
+
+\begin{frame}
+  In this slide \pause
+
+  the text will be partially visible \pause
+
+  And finally everything will be there.
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Sample frame title}
+  This is a text in second frame.
+  For the sake of showing an example.
+
+  \begin{itemize}
+  \item<1-> Text visible on slide 1
+  \item<2-> Text visible on slide 2
+  \item<3> Text visible on slide 3
+  \item<4-> Text visible on slide 4
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Sample frame title}
+
+  In this slide, some important text will be
+  \alert{highlighted} beause it's important.
+
+  \begin{block}{Remark}
+    Sample text
+  \end{block}
+
+  \begin{alertblock}{Important theorem}
+    Sample text in red box
+  \end{alertblock}
+
+  \begin{examples}
+    Sample text in green box. "Examples" is fixed as block title.
+  \end{examples}
+\end{frame}
+
+\begin{frame}{Colors in the current theme}
+  \colorbox{atomBase03} {\color{white}atomBase03}
+  \colorbox{atomBase02} {\color{white}atomBase02}
+  \colorbox{atomBase01} {\color{white}atomBase01}
+  \colorbox{atomBase00} {\color{white}atomBase00}
+  \colorbox{atomBase0}  {\color{white}atomBase0}
+  \colorbox{atomBase1}  {\color{white}atomBase1}
+  \colorbox{atomBase2}  {\color{white}atomBase2}
+  \colorbox{atomBase3}  {\color{white}atomBase3}
+  \colorbox{atomYellow} {\color{white}atomYellow}
+  \colorbox{atomOrange} {\color{white}atomOrange}
+  \colorbox{atomRed}    {\color{white}atomRed}
+  \colorbox{atomMagenta}{\color{white}atomMagenta}
+  \colorbox{atomViolet} {\color{white}atomViolet}
+  \colorbox{atomBlue}   {\color{white}atomBlue}
+  \colorbox{atomCyan}   {\color{white}atomCyan}
+  \colorbox{atomGreen}  {\color{white}atomGreen}
+\end{frame}
+
+
+
+% ---- Thanks Frame ----
+\section*{Thanks}
+\setbeamertemplate{footline}{}  % remove page number
+
+\begin{frame}
+    \vspace*{1cm}
+    \begin{center}
+      {\Huge \bf \textcolor{atomAccent}{Thank you!}}
+    \end{center}
+\end{frame}
+
+% ---- Appendix ----
+% \appendix
+% \begin{frame}
+%   \frametitle{Appendix: ...}
+%
+% \end{frame}
+
+% ---- Bibliography ----
+% using /bibentry/; adding bibliography as footnote at each page
+% include bibtex libraries in front of any citations; Line 103
+
+\end{document}

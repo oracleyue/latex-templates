@@ -1,0 +1,121 @@
+% ================================================================
+% Beamer Configurations: default for zyue
+% ================================================================
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{zyuebeamerplain}[2017/12/01 Custom Theme Package for Plain Slides]
+% options: biblatex (default), bibentry, times, serif
+
+% Parsing Options
+\newif\if@useBibEntry
+\newif\if@useBibLaTeX
+\DeclareOption{biblatex}{
+    \@useBibLaTeXtrue
+    \@useBibEntryfalse
+}
+\DeclareOption{bibentry}{
+    \@useBibEntrytrue
+    \@useBibLaTeXfalse
+}
+\ExecuteOptions{biblatex}
+\newif\if@usetimes\@usetimesfalse
+\DeclareOption{times}{
+  \@usetimestrue
+}
+\newif\if@useserif\@useseriffalse
+\DeclareOption{serif}{
+  \@useseriftrue
+}
+\ProcessOptions
+
+% Beamer Settings
+% set fonts
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\usefonttheme{professionalfonts}
+\if@useserif
+  \usefonttheme{serif}
+\fi
+\if@usetimes
+  \RequirePackage{newtxtext,newtxmath}
+\fi
+% set beamer elements
+\setbeamerfont{title}{family=\sffamily, size=\huge, series=\bfseries}
+\setbeamerfont{frametitle}{family=\sffamily, size=\LARGE, series=\bfseries}
+\setbeamerfont{framesubtitle}{family=\sffamily,series=\mdseries}
+\usecolortheme[named=black]{structure}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{alerted text}{fg=red}       % \alert{..}
+\setbeamerfont*{block title}{family=\sffamily, series=\bfseries}
+\setbeamerfont*{block body example}{size=\small}
+\setbeamercolor*{block title}{fg=black, bg= gray!10}
+\setbeamercolor*{block body}{fg=black, bg= gray!10}
+\setbeamercolor*{block title alerted}{fg=red, bg= gray!10}
+\setbeamercolor*{block body alerted}{fg=black, bg= gray!10}
+\setbeamercolor*{block title example}{fg=black, bg= gray!10}
+\setbeamercolor*{block body example}{fg=black, bg= gray!10}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{section in toc}[ball unnumbered]
+% set layouts
+\RequirePackage{dashrule}
+\setbeamertemplate{frametitle}{
+  \centering\vspace*{40pt}
+  \usebeamerfont{frametitle}\insertframetitle\\[0pt]}
+\setbeamersize{text margin left=40pt,text margin right=40pt}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[text line]{%
+  \parbox[b][30pt][t]{0.8\textwidth}{
+    \vspace*{-8pt}\sffamily\scriptsize\insertshortauthor}\hfill%
+  \parbox[b][30pt][t]{0.15\textwidth}{
+    \vspace*{-8pt}\raggedleft\scriptsize\insertpagenumber}}
+
+% Citations
+\if@useBibLaTeX
+  % use "biblatex" to show (author, year) and bibliography at the last page
+  \usepackage[style=apa,language=english]{biblatex}
+  \DeclareLanguageMapping{english}{english-apa}
+  \renewcommand*{\cite}{\parencite}
+  \renewcommand*{\citesetup}{\small \color{gray}}
+  \renewcommand*{\bibfont}{\scriptsize}
+  % \addbibresource{./ref/library.bib}   % add in .tex to include bib files
+  % \printbibliography                   % add in .tex to print bibliography
+
+  % bibliography styles
+  \setlength\bibitemsep{1.2\itemsep}
+  \setbeamertemplate{bibliography item}{}  % remove the image before entries
+  \setbeamercolor*{bibliography entry author}{parent=normal text}
+  \setbeamercolor*{bibliography entry title}{parent=palette primary}
+  \setbeamercolor*{bibliography entry journal}{parent=normal text}
+  \setbeamercolor*{bibliography entry note}{parent=normal text}
+\fi
+\if@useBibEntry
+  % use "bibentry" to cite in footnotes
+  \RequirePackage{bibentry}       % use \footnote{\bibentry{}}
+  \newcommand{\footcite}[1]{\footnote{\tiny\bibentry{#1}}}
+  \newcommand{\textcite}[1]{\footnotetext{\tiny\bibentry{#1}}} % put \footnotemark first
+  % removing line breaks between title, journal, etc.
+  \setbeamertemplate{bibliography entry title}{}
+  \setbeamertemplate{bibliography entry location}{}
+  \setbeamertemplate{bibliography entry note}{}
+\fi
+
+% Packages
+\RequirePackage{graphicx,subcaption,tikz}
+  \captionsetup[figure]{textfont=scriptsize,labelfont=scriptsize}
+  \setbeamerfont{caption}{size=\scriptsize}
+\RequirePackage{appendixnumberbeamer}
+
+% Text Alignment
+\RequirePackage{setspace}
+\linespread{1.2}
+
+% Customized Macros
+\newcommand{\hl}[1]{{\color{red}\emph{#1}}}   % \hl{..}
+\newenvironment{notes}{\footnotesize\color{gray}\vspace*{30pt}}{}
+
+
+
+\endinput
+% ===================================
+% Style /zyuebeamerplain/ ends here.

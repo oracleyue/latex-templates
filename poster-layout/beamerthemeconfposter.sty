@@ -1,0 +1,223 @@
+%==============================================================================
+% Beamer style for the poster template posted at
+% www.nathanieljohnston.com/index.php/2009/08/latex-poster-template
+%
+% Created by the Computational Physics and Biophysics Group at Jacobs University
+% https://teamwork.jacobs-university.de:8443/confluence/display/CoPandBiG/LaTeX+Poster
+% Modified by Nathaniel Johnston (nathaniel@nathanieljohnston.com) in August 2009
+% =============================================================================
+
+\ProvidesPackage{beamerthemeconfposter}
+\RequirePackage{tikz}		% for drawing the nice rounded boxes
+\usetikzlibrary{arrows,backgrounds}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{textcomp}
+\RequirePackage{amsmath,amssymb}
+
+% my addition
+\RequirePackage{setspace}
+%%%%
+
+\usefonttheme{professionalfonts}
+\newcommand{\makeruleinbox}{{\usebeamercolor[bg]{block alerted title}\centering\hspace*{-0.7cm}\rule{\inboxrule}{0.5cm}}}
+\usepackage{ragged2e}
+
+%-----------------------------------------------------------
+% Define a whole bunch of custom colours and fonts
+%-----------------------------------------------------------
+
+\definecolor{lgreen} {RGB}{180,210,100}
+\definecolor{dblue}  {RGB}{20,66,129}
+\definecolor{ddblue} {RGB}{11,36,69}
+\definecolor{lred}   {RGB}{220,0,0}
+\definecolor{nred}   {RGB}{224,0,0}
+\definecolor{norange}{RGB}{230,120,20}
+\definecolor{nyellow}{RGB}{255,221,0}
+\definecolor{ngreen} {RGB}{98,158,31}
+\definecolor{dgreen} {RGB}{78,138,21}
+\definecolor{nblue}  {RGB}{28,130,185}
+\definecolor{jblue}  {RGB}{20,50,100}
+
+% mycolors (johan)
+\definecolor{kthblue}{RGB}{0,108,183}
+\definecolor{accessgrey}{RGB}{139,140,143}
+\definecolor{SSFgreen1}{RGB}{170,161,53}
+\definecolor{SSFgreen2}{RGB}{86,108,15}
+\definecolor{SSFblue}{RGB}{128,163,184}
+
+\definecolor{CASred}{RGB}{196,0,39}
+\definecolor{CASgreen}{RGB}{0,135,67}
+\definecolor{CASyellow}{RGB}{255,235,0}
+
+% \definecolor{LCSBred}{RGB}{255,20,11}
+\definecolor{LCSBred}{RGB}{219,21,36}
+% \definecolor{LCSBblue}{RGB}{0,170,220}
+\definecolor{LCSBblue}{RGB}{0,150,210}
+\definecolor{LCSBgray}{RGB}{92,92,92}
+
+% what about captions
+\setbeamercolor{caption}{fg=black,bg=white}
+\setbeamertemplate{caption name}{fg=black,bg=white}
+
+% set the basic colors
+\setbeamercolor{palette primary}   {fg=black,bg=white}
+\setbeamercolor{palette secondary} {fg=black,bg=white}
+\setbeamercolor{palette tertiary}  {bg=LCSBgray,fg=white}
+\setbeamercolor{palette quaternary}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=LCSBgray}
+\setbeamercolor{titlelike}         {bg=LCSBgray,fg=white}
+\setbeamercolor{frametitle}        {bg=LCSBgray,fg=LCSBgray} % jblue -> kthblue
+\setbeamercolor{cboxb}{fg=black,bg=LCSBgray} % jblue -> accessgrey
+\setbeamercolor{cboxr}{fg=black,bg=red}
+
+\setbeamercolor{SSF1}{fg=black,bg=SSFblue}
+\setbeamercolor{SSF2}{fg=black,bg=SSFgreen1}
+\setbeamercolor{SSF3}{fg=black,bg=SSFgreen2}
+\setbeamercolor{SSF4}{fg=white,bg=white}
+
+\setbeamercolor{LCSBR}{fg=black,bg=LCSBred}
+\setbeamercolor{LCSBB}{fg=black,bg=LCSBblue}
+\setbeamercolor{LCSBG}{fg=black,bg=LCSBgray}
+
+% set colors for itemize/enumerate
+\setbeamercolor{item}{fg=LCSBblue} % byte ngreen mot kthblue
+\setbeamercolor{item projected}{fg=white,bg=LCSBblue} % byte ngreen mot kthblue
+
+% set colors for blocks
+\setbeamercolor{block title}{fg=black,bg=white} % byte ngreen mot kthblue
+\setbeamercolor{block body}{fg=black,bg=white}
+
+% set colors for alerted blocks (blocks with frame)
+\setbeamercolor{block alerted title}{fg=white,bg=black}
+\setbeamercolor{block alerted body}{fg=black,bg=white}
+
+% set the fonts
+\setbeamerfont{section in head/foot}{series=\bfseries}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamerfont{block alerted title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{block body}{series=\rmfamily}
+
+% set some beamer theme options
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{blocks}[width=0.0]
+\beamertemplatenavigationsymbolsempty
+
+% set bibliography style
+\setbeamertemplate{bibliography item}[text]
+\setbeamercolor{bibliography item}{fg=black,bg=white}
+\setbeamercolor{bibliography entry author}{fg=black,bg=white}
+\setbeamercolor{bibliography item}{fg=black,bg=white}
+
+% define some length variables that are used by the template
+\newlength{\inboxwd}
+\newlength{\iinboxwd}
+\newlength{\inboxrule}
+\makeatletter
+\makeatother
+
+%==============================================================================
+% build the poster title
+%==============================================================================
+\setbeamertemplate{headline}{
+ \leavevmode
+  \begin{columns}
+   \begin{column}{\linewidth}
+    \vskip5.5cm
+%    \usebeamercolor{title in headline}{\color{kthblue}\huge{\textbf{\inserttitle}}\\[0.5ex]} % changed jblue to kthblue (johan) 0.5ex to 1ex
+ \hspace*{0.85cm}\begin{minipage}[t]{1\linewidth}
+ \usebeamercolor{title in headline}{\color{white}\huge{\textbf{\inserttitle}}\\[0.7ex]} % changed jblue to kthblue (johan) 0.5ex to 0.7ex
+    \usebeamercolor{author in headline}{\color{white}\Large{\insertauthor}}
+    %\usebeamercolor{institute in headline}{\color{LCSBgray}\large{\insertinstitute}\\[1ex]}
+    %\vskip5cm
+    \end{minipage}
+   \end{column}
+   %\vspace*{5cm}
+  \end{columns}
+ \vspace{0cm}
+% \hspace{0.5in}
+%\begin{beamercolorbox}[wd=34in,colsep=0.1cm]{LCSBR}\end{beamercolorbox}
+%\begin{beamercolorbox}[wd=34in,colsep=0.1cm]{SSF4}\end{beamercolorbox}
+%\begin{beamercolorbox}[wd=34in,colsep=0.1cm]{LCSBB}\end{beamercolorbox}
+%\begin{beamercolorbox}[wd=34in,colsep=0.1cm]{SSF4}\end{beamercolorbox}
+%\begin{beamercolorbox}[wd=34in,colsep=0.1cm]{LCSBG}\end{beamercolorbox}
+
+%    \begin{tikzpicture}[remember picture,overlay]
+%      \shade [inner color=SSFgreen1,outer color=white] % byte grey mot SSFblue
+%      (0,0) rectangle (\textwidth,0.5cm);
+%      \shade [inner color=SSFgreen1,outer color=white] % byte grey mot SSFblue
+%      (0,0.3cm) rectangle (\textwidth,0.6cm);
+%      \shade [inner color=SSFgreen2,outer color=white] % byte grey mot SSFblue
+%      (0,0.6cm) rectangle (\textwidth,0.9cm);
+%    \end{tikzpicture}
+ \vspace{0.1in}
+}
+
+% Block definition
+\setbeamertemplate{block begin}
+{
+  \par\vskip\medskipamount
+  \begin{beamercolorbox}[colsep*=0ex,dp={2ex}]{block title}
+    \vskip-0.25cm
+    \usebeamerfont{block title}\large\insertblocktitle
+    \begin{flushleft}
+    \vskip-1cm
+    \begin{tikzpicture}[remember picture,overlay]
+      \shade [inner color=LCSBgray,outer color=LCSBgray] % byte grey mot SSFblue
+      (0,0) rectangle (\textwidth,0.15cm); %0.3cm
+%      (0,1) rectangle (\textwidth,0.05cm); %0.3cm
+    \end{tikzpicture}
+    \end{flushleft}
+  \end{beamercolorbox}
+  {\parskip0pt\par}
+  \ifbeamercolorempty[bg]{block title}
+  {}
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}
+  \usebeamerfont{block body}
+  \vskip-0.5cm
+  \begin{beamercolorbox}[colsep*=0ex,vmode]{block body}
+  \justifying
+}
+
+\setbeamertemplate{block end}
+{
+  \end{beamercolorbox}
+  \vskip\smallskipamount
+}
+
+% Alert block definition (with frame)
+\setbeamertemplate{block alerted begin}
+{
+  \par\vskip\medskipamount
+  \begin{beamercolorbox}[sep=0ex,rounded=true,center,dp={2ex}]{block alerted title}
+    \vskip0.01cm
+    \usebeamerfont{block title}\large\insertblocktitle
+  \end{beamercolorbox}
+  {\parskip0pt\par}
+  \usebeamerfont{block body}
+  \vskip-0.8cm
+  \begin{beamercolorbox}[sep=0.5cm, rounded=true,center]{block alerted title}
+  \setlength{\inboxwd}{\linewidth}
+  \addtolength{\inboxwd}{-1cm}
+  \begin{beamercolorbox}[rounded=true,wd={\inboxwd},center]{block alerted body}
+  \setlength{\iinboxwd}{\inboxwd}
+  \setlength{\inboxrule}{\inboxwd}
+  \addtolength{\iinboxwd}{-0.5cm}
+  \addtolength{\inboxrule}{0.5cm}
+  \begin{center}
+  \begin{minipage}{\iinboxwd}
+  \justifying
+}
+
+\setbeamertemplate{block alerted end}
+{
+  \end{minipage}
+  \end{center}
+  \end{beamercolorbox}
+  \end{beamercolorbox}
+  \vskip\smallskipamount
+}
